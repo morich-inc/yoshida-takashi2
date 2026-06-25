@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉田貴 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>吉田貴 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社ARI</a>
+  <a href="#k2">2. ウェルスナビ株式会社</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">コーポレート責任者</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社ARI</div>
+  <div class="co-url"><a href="https://ari-japan.co.jp/" target="_blank">https://ari-japan.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>上場区分</th><td>未上場</td></tr><tr><th>設立</th><td>2025年10月</td></tr><tr><th>代表者</th><td>共同代表取締役 岩野耕祐・小林千花</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>会員権販売開始から5ヶ月で約7億円の売上を達成した急成長スタートアップ</li><li>アチーブメント株式会社の独立支援制度を活用して誕生した注目のホスピタリティ企業</li><li>丸ノ内ホテル創業家出身×トップ営業出身という異色の共同創業者体制</li><li>3名体制のフェーズからコーポレート基盤をゼロから構築できる希少なポジション</li><li>年収800万〜1000万円（相談可）</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2025年10月、アチーブメント株式会社の独立支援制度を活用して誕生した革新的なホスピタリティ企業です。2016年新卒入社でアチーブメントの営業記録を塗り替え続けた岩野耕祐氏と、丸ノ内ホテル創業家出身で元ファーストキャビンHD代表の小林千花氏が共同創業。二人の異なるバックグラウンドが融合し、『日本発の伝説のホスピタリティグループ』という壮大なビジョンが誕生しました。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2025年10月、アチーブメント株式会社の独立支援制度を活用して誕生した革新的なホスピタリティ企業です。2016年新卒入社でアチーブメントの営業記録を塗り替え続けた岩野耕祐氏と、丸ノ内ホテル創業家出身で元ファーストキャビンHD代表の小林千花氏が共同創業。二人の異なるバックグラウンドが融合し、『日本発の伝説のホスピタリティグループ』という壮大なビジョンが誕生しました。</p><p>第一弾プロジェクトとして栃木県中禅寺湖畔で開発中の『HOTEL THE SEN』は、全室100㎡以上、客室数8室のスモールラグジュアリーホテル。『禅』をコンセプトに、審査制会員権制度を導入したプライベートクラブ型リゾートとして2029年春の開業を目指しています。これまでにない新しいホスピタリティ体験を創造し、日本の価値を世界に発信する挑戦が始まっています。</p><p>同社では、ホテルのプロデュース、会員制コミュニティの運営、古民家や空き家を活用した新たなホテル開発にも取り組み、多角的なホテル事業を展開しています。創業からわずか数ヶ月で業界から注目を集める同社は、真のホスピタリティを追求し、利益とおもてなしの心を両立させた新しいホテルビジネスモデルの創出に挑戦しています。</p><p><strong>共同代表取締役　岩野耕祐氏</strong><br>2016年アチーブメント新卒入社後、入社1年目で歴代新人記録を樹立し新人賞を受賞。その後社内営業記録を全て塗り替え、最年少で拠点長に昇格。2年連続マネージャー大賞を受賞し、最短で独立支援制度認定グレードまで到達した営業のプロフェッショナル。累計2000名以上のお客様の支援を通じて培った顧客満足の追求と、伝説のホスピタリティグループを創るという強い信念を持つ創業者です。</p><p><strong>共同代表取締役　小林千花氏</strong><br>丸ノ内ホテル創業家に生まれ、幼い頃からホテルが身近にある環境で育つ。年150泊以上のホテル研究を続ける真のホテル愛好家。2021年より富士屋ホテルで修行を積み、2022年ファーストキャビンHDに入社、翌年代表取締役に就任。わずか1年間でコンセプト設計、オペレーション、マーケティング改善に着手し大幅な増収増益を達成した経営手腕の持ち主。祖父の手帳に残された『伝説のホテルをつくりたかった』という遺言を胸に、真のホスピタリティとは何かを追求し続ける情熱的な経営者です。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 コーポレート責任者</div>
+          <div class="job-preview">急成長ホスピタリティスタートアップのコーポレート基盤をゼロから構築する責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>現在、共同代表2名とビジネスサイド（不動産担当）1名の3名体制で事業を推進しています。会員権の販売開始から5ヶ月で約7億円の売上を達成するなど『攻め』の営業・開発体制は非常に強固ですが、事業の急拡大に伴い、金融機関との折衝や決算対応、人事・労務などコーポレート基盤をゼロから構築し、急成長する経営陣の右腕として、事業推進を牽引いただける方を募集します。</p><p><strong>【主な業務内容】</strong></p><p><strong>■経理・財務マネジメント</strong></p><p>銀行等の金融機関との折衝、資金調達（デッド調達等）の実行、キャッシュフロー管理、資本政策の立案サポート</p><p><strong>■バックオフィス立ち上げ</strong></p><p>コーポレート部門の組織設計、業務フローの構築、各種規定策定（人事・労務・法務含む）</p><p><strong>■経営管理</strong></p><p>日々の業績管理、予実管理、経営陣への意思決定サポート</p><p>立ち上げフェーズにつき、プレイングマネージャーとして現場の課題解決にハンズオンで取り組んでいただきます。</p><p><strong>【必須スキル】</strong></p><ul><li><span class='tag tag-must'>MUST</span> 管理部門（バックオフィス）において、自ら手を動かして実務を回すことができるプレイングマネージャーとしての経験</li><li><span class='tag tag-must'>MUST</span> 決算関連の実務経験および金融機関との折衝経験</li></ul><p><strong>【歓迎スキル】</strong></p><ul><li><span class='tag tag-want'>WANT</span> スタートアップ企業でのバックオフィス立ち上げ経験</li><li><span class='tag tag-want'>WANT</span> スタートアップの『正解がない中でルールを作り上げるプロセス』に喜びを感じられる方</li><li><span class='tag tag-want'>WANT</span> 経営陣のビジョンに深く共感し、その実現のために『守り』の面から圧倒的にコミットできる方</li><li><span class='tag tag-want'>WANT</span> 変化を恐れず、自律的に考え、泥臭い実務も完遂できるスピード感のある方</li></ul><p><strong>年収：800万〜1000万円程度（※相談可能）</strong></p>
+        <div class="meta-pills"><span class="pill">💰 800万〜1000万円</span><span class="pill">✅ 正社員</span><span class="pill">🚀 スタートアップ</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://ari-japan.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">次世代オペレーション構築・運用責任者候補</span><span class="badge badge-blue">東証プライム</span></div>
+  <div class="co-name">ウェルスナビ株式会社</div>
+  <div class="co-url"><a href="https://corp.wealthnavi.com/" target="_blank">https://corp.wealthnavi.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都品川区西五反田8-4-13 五反田JPビルディング9F</td></tr><tr><th>上場区分</th><td>東証プライム（2025年3月より三菱UFJ銀行の完全子会社）</td></tr><tr><th>代表者</th><td>CEO 柴山和久</td></tr><tr><th>アクセス</th><td>JR五反田駅 徒歩5分／JR大崎駅 徒歩7分／東急池上線大崎広小路駅 徒歩1分</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★役員リレーション・過去複数名入社実績あり（morich経由で執行役員・須藤様が入社、現在事業戦略グループ責任者兼アライアンスグループ責任者として活躍中）</li><li>2025年3月に三菱UFJ銀行の完全子会社となり、MUFGグループ6,000万人規模の顧客基盤を活かした非連続成長フェーズに突入</li><li>運用者数・預かり資産ともに国内ロボアドバイザーNo.1（2025年4月時点：運用者数42万人、預かり資産1兆4,000億円）</li><li>2026年度後半に三菱UFJ銀行と共同でデジタルバンク新設を予定、その中核機能を担うポジション</li><li>年収1,200万〜1,800万円という高水準の報酬設定</li><li>石原さとみさん出演のTVCMでもお馴染みの知名度の高いFinTech企業</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">『働く世代に豊かさを』というミッションのもと、日本の働く世代の豊かな老後に向けた資産形成をサポートする会社です。ミッション実現に向けた第一歩として、ロボアドバイザーWealthNaviを開発・提供しています。『WealthNavi』は2016年7月のサービス提供開始以降、2025年4月1日には運用者数42万人、預かり資産は1兆円4,000億円を突破。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>『働く世代に豊かさを』というミッションのもと、日本の働く世代の豊かな老後に向けた資産形成をサポートする会社です。ミッション実現に向けた第一歩として、ロボアドバイザーWealthNaviを開発・提供しています。『WealthNavi』は2016年7月のサービス提供開始以降、2025年4月1日には運用者数42万人、預かり資産は1兆円4,000億円を突破。運用者数・預かり資産ともに国内ロボアドバイザーNo.1となっています。</p><p>2025年3月に三菱UFJ銀行の完全子会社となりました。三菱UFJ銀行／MUFGグループとの一体的なプロダクト開発を進めており、同行が抱える1,000万人規模のデジタル顧客基盤に対して、ロボアドバイザーに限らず、生命保険、個人年金、住宅ローンなどを含む個人向け金融プラットフォームの構築を目指し、新たなサービスの開発にも取り組んでいます。</p><p><strong>▼代表プロフィール CEO 柴山和久氏</strong><br>1977年生まれ。2000年に東大法学部を卒業後、財務省に9年間勤務。ハーバード大学にて金融取引法を学んだ後、日英の財務省で予算、税制、国際交渉に参画。INSEADで金融工学を学んだ後、2010年にマッキンゼーに入社。ウォール街の機関投資家にて10兆円規模のリスク管理・資産運用プロジェクトに携わる。2015年3月に退社し、TECH::CAMP第6期に入学。卒業直後、次世代の金融インフラを構築したいという想いから、2015年4月にWealthNavi（ウェルスナビ）株式会社を設立。</p><p>石原さとみさん出演のTVCMでもお馴染みの同社。同社はお金の悩みをテクノロジーの力で解決し、日本の働く世代の豊かな人生をサポートすることを目指しています。創業者であるCEO柴山様は、家族の金融格差を目の当たりにし、日本では富裕層向けサービスが主流の資産運用業界に切り込み、働く世代に豊かさを享受してもらうべく、事業を拡大されてきました。</p><p>執行役員・須藤様は、morich経由でジョインいただきました！経営に近い立場を志向されており、入社後ご活躍されて、現在は事業戦略グループ責任者とアライアンスグループ責任者を兼務されています。</p><p>2025年3月より三菱UFJ銀行にグループインし、同行の顧客資産を活用しながら更なる拡大を目指されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 次世代オペレーション構築・運用責任者候補</div>
+          <div class="job-preview">MUFGグループとの連携による非連続成長を支える、全社横断オペレーション変革の責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■募集背景</strong></p><p>ウェルスナビは、全自動で『長期・積立・分散』の資産運用を行うロボアドバイザー『ウェルスナビ』の開発・運営を通じて成長を続けてきました。新NISA制度を追い風に、『ウェルスナビ』のさらなる成長に注力するとともに、生命保険・年金・住宅ローン等に関わる新規プロダクトを複数リリースし、プロダクト横断の総合アドバイザリープラットフォーム『Money Advisory Platform（MAP）』を立ち上げる転換期を迎えています。</p><p>加えて、2026年度の後半に三菱UFJ銀行と共同でデジタルバンクの新設を予定しています。その中核機能としてロボアドバイザー及びMAPを実装し、MUFGグループの6,000万人規模の顧客基盤を活かしたマーケティングも実施をしていく計画のため、今後、非連続的な顧客基盤の拡大を見据えています。</p><p>さらに『三菱UFJ eスマート証券』との経営統合によって、デジタルバンクの銀行機能と対になる『デジタル資産形成』を担う新エンティティ設立も目指しています。</p><p>上記構想を叶えるために、MUFG連携による急速な顧客増や今後の事業戦略に合わせた次世代のオペレーションモデルの構想、実行が必要不可欠です。こうした背景から、今後の非連続な事業成長を支えるために、既存事務のオペレーション改革だけではなく、事業戦略に合わせた全社横断でのオペレーション構想を担う責任者を募集します。</p><p><strong>■本ポジションの期待役割</strong></p><p>本ポジションは、既存のロボアドに留まらず、MAPを中心とするマルチプロダクト展開やデジタルバンク開業という新たな展開も包摂したオペレーション改革をリードする中核的な役割です。</p><p>現状の業務改善にとどまらず、顧客体験を起点に、業務・開発といった複数の視点から課題を捉え、全社最適のオペレーションを構想し、実行まで推進していただきます。</p><p>『ものづくりする金融機関』として内製の開発チームやAIチームを巻き込みながら、デジタル時代にふさわしいオペレーションモデルを自ら描き、具現化していくことが求められます。</p><p>未来志向で事業戦略を先取りし、オペレーション変革に伴うチームのチェンジマネジメントや、オペレーション領域を起点とした顧客体験向上を責任者として牽引していただきたいです。</p><p><strong>■所属予定先</strong></p><p>カスタマーサービスグループ内の『オペレーションチーム』への所属となります。当グループは、単に目の前の手続きを処理するコストセンターではなく、優れた顧客体験を提供し、事業の非連続な成長を支える戦略拠点として位置づけられています。</p><p>経営陣（CEO柴山）もその重要性を強く発信しており、ウェルスナビが提供する金融サービスの入口となる口座開設から、入出金、新機能・新規プロダクト（MAPやデジタルバンク等）に伴う社内業務フロー構築まで、全社の基幹となるバックオペレーション設計を担っています。</p><ul><li>カスタマーサービスグループ<ul><li>カスタマーサービス企画</li><li>カスタマーサポート</li><li>オペレーション</li></ul></li></ul><p>※グループ全体は金融機関出身者、ネットベンチャー、事業会社出身者など多様なバックグラウンドのメンバー約70名で構成されています。</p><p><strong>■業務内容</strong></p><p>MAP構想・デジタルバンク拡大における顧客増加や、三菱UFJ eスマート証券との経営統合などの事業戦略を先取りし、全社最適の視点からオペレーションの基盤設計・変革をリードしていただきます。具体的には、ご経験や志向性に応じて以下の業務をお任せします。</p><ul><li>オペレーション全体の最適化・自動化に向けた構想立案および推進</li><li>新規プロダクト・機能リリースに伴うアジャイルな業務設計</li><li>AIやSaaSを活用した業務の自動化・高度化</li><li>全社横断のプロジェクトマネジメント</li><li>高品質な事務運営の統括・BPOマネジメント</li></ul><p>お任せする業務領域は、ご志向やご経験に合わせて選考プロセスの中で検討させていただきます。</p><p>※当該ポジションでの勤務は出社を前提とするポジションとなります。</p><p><strong>■他社金融バックオフィスとの違い</strong></p><p>伝統的な金融機関にありがちな外部ベンダー丸投げで仕様変更に何年もかかる、という環境ではなく、アジャイルにまずは小さく業務運用を始め、現場で発生した課題や要件を言語化して社内の開発チームやプロダクト側にプッシュしていく役割も担います。お客様のエフォートレスな体験設計を全社で作っていく体制です。顧客体験の最大化をメインミッションに、金融ドメインの中で最先端のテクノロジー変革を自ら主導いただける面白さがあります。</p><p><strong>■必須（MUST）</strong></p><ul><li><span class='tag tag-must'>MUST</span> 社内の複数部門や外部パートナーと協働し、大規模な業務プロセスの構築・変革またはシステム導入などのプロジェクトマネジメント経験</li><li><span class='tag tag-must'>MUST</span> あるべき姿（To-Be）の構想に向け、業務フローをゼロから新規構築・設計した経験（新規事業・プロダクト立ち上げ、法改正対応など）</li><li><span class='tag tag-must'>MUST</span> 組織マネジメントのご経験</li><li><span class='tag tag-must'>MUST</span> なんらかの金融関連のご経験</li></ul><p><strong>■歓迎（WANT）</strong></p><ul><li><span class='tag tag-want'>WANT</span> 証券業におけるバックオペレーションのご知見</li><li><span class='tag tag-want'>WANT</span> AIツール、SaaSなどのデジタルソリューションを用いた業務自動化・高度化のご経験</li><li><span class='tag tag-want'>WANT</span> 企業統合（PMI）、事業譲渡、または組織改編などに伴うチェンジマネジメントのご経験</li></ul><p><strong>■求める人物像</strong></p><ul><li>『働く世代に豊かさを』というミッションに共感いただける方</li><li>課題に対し能動的に具体的なアクションを起こすことができる方</li><li>今ある業務の最適化に加え、今後の『あるべき姿』を構想し実行できる方</li><li>新しい仕組みを自ら設計し、関係者を巻き込みながら推進できる方</li><li>変化を楽しみながら未来をつくっていく志向をお持ちの方</li></ul><p><strong>■使用ツール</strong></p><ul><li>社内コミュニケーション：Slack、Google Workspace等</li><li>顧客コミュニケーション：Zendesk、Biztel、KARTE等</li><li>その他：JIRA、Figma、BigQuery、Googleアナリティクス等</li></ul><p><strong>■待遇・福利厚生</strong></p><ul><li>年収：1,200万〜1,800万円（年俸制で12分割した金額を毎月支給）</li><li>社会保険：厚生年金、雇用保険、労災保険、健康保険（関東ITソフトウェア健康保険組合）</li></ul><p><strong>【福利厚生】</strong></p><ul><li>企業型確定拠出年金</li><li>社内マッサージルーム</li><li>オフィスコンビニ・コーヒーマシン・その他ドリンク一部無料</li><li>インフルエンザ予防接種</li></ul><p><strong>【能力開発】</strong></p><ul><li>書籍購入補助（業務に必要な専門書・技術書の購入補助）</li><li>資格取得補助</li><li>外部研修、セミナー参加補助</li><li>資産運用勉強会（社内にいる金融工学のプロ実施の金融勉強会）</li></ul><p><strong>【コミュニケーション施策】</strong></p><ul><li>Happyhour（全社イベント・週1）</li><li>All Hands（全社MTG・週1）</li><li>ウェルカムランチ（新規入社者発生時）</li><li>チームランチ（月1回）</li></ul><p><strong>【就業環境】</strong></p><ul><li>PC自由選択</li><li>ハイブリッド勤務（週3日以上の出社と在宅を併用※配属先により一部例外有）</li><li>ハーマンミラー社のワークチェアを執務室全席に完備</li></ul><p><strong>【休日・休暇】</strong></p><ul><li>土日祝日、年末年始、その他会社が定める休暇</li><li>年次有給休暇（入社時より付与。2年目15日、3年目以降は20日）※1時間単位で有給休暇が取得可能※土日祝日休みは一部対象外ポジションあり</li></ul><p><strong>【勤務時間】</strong></p><p>フレックスタイム制（コアタイム：10:00〜16:00、休憩時間：60分）※一部フレックス対象外ポジションあり</p>
+        <div class="meta-pills"><span class="pill">📍 東京都品川区（五反田）</span><span class="pill">💰 1,200万〜1,800万円</span><span class="pill">🏠 ハイブリッド勤務（週3日以上出社）</span><span class="pill">✅ 正社員</span><span class="pill">🏦 三菱UFJ銀行完全子会社</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.wealthnavi.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://www.docswell.com/s/wealthnavi/ZP96X4-company_introduction#p1" target="_blank">📄 会社紹介資料</a><a class="lbtn lbtn-out" href="https://note.com/wealthnavi_hr" target="_blank">📝 採用公式note</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが吉田貴 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
